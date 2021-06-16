@@ -1,8 +1,8 @@
-PWD c:/Users/luteo/Documents/Iselab/2021/0629_survey
+PWD c:/Users/Maiko Okano/Documents/IseLab/2021/0629_survey
 INPUT c:/texlive/2021/texmf.cnf
 INPUT c:/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2021/texmf-var/web2c/eptex/platex.fmt
-INPUT c:/Users/luteo/Documents/Iselab/2021/0629_survey/pufsurvey.tex
+INPUT c:/Users/Maiko Okano/Documents/IseLab/2021/0629_survey/pufsurvey.tex
 OUTPUT out/pufsurvey.log
 INPUT ./ieicej.cls
 INPUT ./ieicej.cls
@@ -254,6 +254,10 @@ INPUT c:/texlive/2021/texmf-dist/tex/latex/oberdiek/centernot.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/oberdiek/centernot.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/oberdiek/centernot.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
 INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
 INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
 INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
