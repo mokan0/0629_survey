@@ -1,6 +1,5 @@
-\documentclass[paper]{ieicej}
-%\documentclass[invited]{ieicej}% 招待論文
-%\documentclass[survey]{ieicej}% サーベイ論文
+%\documentclass[paper]{ieicej}
+\documentclass[survey]{ieicej}% サーベイ論文
 %\documentclass[comment]{ieicej}% 解説論文
 %\usepackage[dvips]{graphicx}
 %\usepackage[dvipdfmx]{graphicx,xcolor}
@@ -29,23 +28,47 @@
 
 \begin{document}
 \begin{abstract}
-  %和文あらまし 
+  フィジカリー・アンクローナブル・ファンクション（PUF）とは，主に半導体技術を用いて作られた集積回路を大量生産した際に生じる，制御不能な製造ばらつき
+  を利用してその個体にランダムな関数を作る技術のことである．この技術は，個体の識別に用いることで模造品の作成を防ぐだけでなく，制御不能な性質を利用することで
+  暗号アルゴリズムに組み合わせて使うことも期待されている．本稿ではPUFについて調査した内容を，その発展の歴史を踏まえて述べる．
 \end{abstract}
 \begin{keyword}
   %和文キーワード 4〜5語
+  暗号ハードウェア，ハードウェアセキュリテイ，PUF
 \end{keyword}
 \begin{eabstract}
   %英文アブストラクト 100 words
 \end{eabstract}
 \begin{ekeyword}
   %英文キーワード
+  Physically Unclonable Function
 \end{ekeyword}
 \maketitle
 
 \section{まえがき}
+\section{PUFの性質}
+\subsection{PUFの名前の由来}
+\subsection{一連の流れ}
+\subsubsection{個体}
+\subsubsection{チャレンジ}
+\subsubsection{試行とレスポンス}
+\subsection{PUFに求められる性質}
+特にセキュリティの観点から重要なものとしては，再現性，ユニーク性，耐クローン性の3つが挙げられる．
+\subsubsection{再現性}
+\subsubsection{ユニーク性}
+\subsubsection{耐クローン性}
+
+他にもいくつかあるので紹介する．
+\subsubsection{予測困難性}
+\subsubsection{一方向性}
+\subsubsection{耐タンパー性}
+\section{PUFの歴史}
+\subsection{物理的一方向関数（POWF）}
+\subsection{半導体製のPUF}
+\subsection{アービターPUF}
 
 
-\ack %% 謝辞
+%\ack %% 謝辞
 
 %\bibliographystyle{sieicej}
 %\bibliography{myrefs}
@@ -56,10 +79,10 @@
 \appendix
 \section{}
 
-\begin{biography}
-  \profile{}{}{}
-  %\profile{会員種別}{名前}{紹介文}% 顔写真あり
-  %\profile*{会員種別}{名前}{紹介文}% 顔写真なし
-\end{biography}
+%\begin{biography}
+% \profile{}{}{}
+%\profile{会員種別}{名前}{紹介文}% 顔写真あり
+%\profile*{会員種別}{名前}{紹介文}% 顔写真なし
+%\end{biography}
 
 \end{document}
