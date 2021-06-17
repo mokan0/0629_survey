@@ -1,8 +1,8 @@
-PWD c:/Users/Maiko Okano/Documents/IseLab/2021/0629_survey
+PWD c:/Users/luteo/Documents/Iselab/2021/0629_survey
 INPUT c:/texlive/2021/texmf.cnf
 INPUT c:/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2021/texmf-var/web2c/eptex/platex.fmt
-INPUT c:/Users/Maiko Okano/Documents/IseLab/2021/0629_survey/pufsurvey.tex
+INPUT c:/Users/luteo/Documents/Iselab/2021/0629_survey/pufsurvey.tex
 OUTPUT out/pufsurvey.log
 INPUT ./ieicej.cls
 INPUT ./ieicej.cls
@@ -261,10 +261,6 @@ INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
 INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
 INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
 INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
-INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
-INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
-INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
-INPUT c:/texlive/2021/texmf-dist/tex/generic/kastrup/binhex.tex
 INPUT c:/texlive/2021/texmf-dist/tex/latex/base/latexsym.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/base/latexsym.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/base/latexsym.sty
@@ -395,9 +391,18 @@ INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/latex-fonts/lasy10.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/latex-fonts/lasy10.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/latex-fonts/lasy10.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxmi1.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/latex-fonts/lasy9.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/latex-fonts/lasy10.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/latex-fonts/lasy10.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/ptex-fonts/jis/jis-v.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/ptex-fonts/jis/jis.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-t1.tfm
