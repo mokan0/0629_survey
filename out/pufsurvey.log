@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.sjis) (TeX Live 2021/W32TeX) (preloaded format=platex 2021.6.2)  17 JUN 2021 15:01
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.sjis) (TeX Live 2021/W32TeX) (preloaded format=platex 2021.6.2)  17 JUN 2021 15:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -445,29 +445,29 @@ LaTeX Font Info:    External font `jisg at11.089pt' loaded for size
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 10.95pt on input line 48.
 LaTeX Font Info:    External font `jis-v at7.3926pt' loaded for size
-(Font)              <7> on input line 75.
+(Font)              <7> on input line 78.
 LaTeX Font Info:    External font `jis at7.3926pt' loaded for size
-(Font)              <7> on input line 75.
+(Font)              <7> on input line 78.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.0pt on input line 75.
+(Font)              scaled to size 7.0pt on input line 78.
 LaTeX Font Info:    External font `jis-v at17.742pt' loaded for size
-(Font)              <17.28> on input line 88.
+(Font)              <17.28> on input line 91.
 LaTeX Font Info:    External font `jis at17.742pt' loaded for size
-(Font)              <17.28> on input line 88.
+(Font)              <17.28> on input line 91.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 17.28pt on input line 88.
-LaTeX Font Info:    Trying to load font information for T1+qhv on input line 88.
+(Font)              scaled to size 17.28pt on input line 91.
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 91.
 (c:/texlive/2021/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 88.
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 88.
+(Font)              scaled to size 7.19995pt on input line 91.
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 91.
 (c:/texlive/2021/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 88.
+(Font)              scaled to size 8.0pt on input line 91.
 [1
 
 
@@ -484,4 +484,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  57i,11n,66p,415b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on out/pufsurvey.dvi (2 pages, 3952 bytes).
+Output written on out/pufsurvey.dvi (2 pages, 4004 bytes).
