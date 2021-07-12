@@ -62,7 +62,7 @@
 本節では，PUFに求められるセキュリティに関する特性を説明する．
 要求される重要な特性の説明を通して，実際のPUFがどのような機能を果たすかの理解を深めることが狙いである．
 しかし，本稿執筆時点（2021年7月2日）でPUFのセキュリティ要件及び試験方法は，ISO/IEC 20879にて議論中となっている．
-そのため，ここでの内容は主に菅原\cite{sugatake}とMaesに基づいている．
+そのため，ここでの内容は主に菅原\cite{sugatake}とMaes\cite{maes1}に基づいている．
 
 まず，再現性・ユニーク性・耐クローン性の3つの特性について述べる．
 この3つの特性は，PUFの機能の根幹を支えるとりわけ重要な特性である．
@@ -91,10 +91,6 @@ PUFの個体差，つまりユニーク性は高いほうがよい．
 もう1つはクローンの制作を試みる攻撃への耐性を持つ（クローンを作るための既知の攻撃が存在しない）ことである．
 
 
-\subsubsection{予測困難性}
-\subsubsection{一方向性}
-\subsubsection{耐タンパー性}
-
 \section{PUFの分類}
 \section{問題点や攻撃}
 \section{まとめ}
@@ -106,7 +102,9 @@ PUFの個体差，つまりユニーク性は高いほうがよい．
 \begin{thebibliography}{99}% 文献数が10未満の時 {9}
   \bibitem{sugatake}
   菅原健，“暗号ハードウェアの研究開発動向：フィジカリー・アンクローナブル・ファンクション，”
-  金融研究，vol.39，no.4，pp.25-54，Oct.2020
+  金融研究，vol.39，no.4，pp.25-54，Oct. 2020.
+  \bibitem{maes1}
+  R. Maes, Physically Unclonable Functions: Properties, Springer, Berlin, Heidelbelg, 2013.
 
 \end{thebibliography}
 
