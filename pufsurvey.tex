@@ -44,7 +44,7 @@
 \maketitle
 
 \section{はじめに}
-
+研究背景，PUFの使いみち
 
 \section{PUFとは}
 \subsection{PUFの概要}
@@ -87,8 +87,20 @@ PUFの個体差，つまりユニーク性は高いほうがよい．
 \section{PUFの分類}
 \subsection{初期のPUF}
 \subsubsection{Physical one-way functions}
-2001年にPappuが提案したPhysical one-way functions（POWF）\cite{pappu}が，PUFの始祖とされている．
-\subsubsection{シリコンベースのPUF}
+PUFの始祖とされているのは，2001年にPappuが提案した物理的一方向性関数（Physical one-way functions: POWF）\cite{pappu}である．
+背景としては，既存の数論に基づいた一方向性関数の課題に対する解決策として提案された．
+POWFの簡略化した手順を以下に示す．
+\begin{enumerate}
+  \item 3次元の不規則な構造の媒体をトークンとして用意する．具体的には，極小のガラス玉をいくつか含んだエポキシ樹脂とされている．
+  \item 上記の媒体にレーザー光を照射したものを，電化結合素子カメラで記録する．これによって，2次元のスペックルパターンを得る．
+  \item スペックルパターンをガボール変換でフィルタリングし，鍵となるビット列（1次元）を生成する．
+\end{enumerate}
+
+POWFでは，各個体ごとにガラス玉（気泡）の含まれ方が異なることがユニーク性の根拠となっている．
+\subsubsection{Sillicon PUF}
+POWFは精密な光学機器で処理を行う必要があるため，アナログインターフェイスで使用するように作られている．
+一方で，Gassendは
+また，“PUF”という名前やPUFの定義が明記されたのは，この論文が最初である．
 \subsection{遅延ベースのPUF}
 \subsubsection{Arbiter PUF}
 \subsubsection{Ring Ocillator PUF}
@@ -97,6 +109,7 @@ PUFの個体差，つまりユニーク性は高いほうがよい．
 \subsubsection{Butterfly PUF}
 \subsection{その他の特徴を持つPUF}
 \subsection{Strong/Weak PUF}
+\subsection{Controlled/Uncontrolled PUF}
 
 \section{問題点や攻撃}
 \subsection{暗号としてのPUF利用（仮）}
@@ -119,7 +132,12 @@ PUFの個体差，つまりユニーク性は高いほうがよい．
   \bibitem{pappu}
   P.S. Ravikanth, “Physical One-Way Functions,” Massachesetts Institute of Technology,
   March 2001.
+  \bibitem{gassend2}
 
+  \bibitem{gassend1}
+  B. Gassend, D. Clarke, M. Dijk, S. Devadas, “Silicon physical random funcions,”
+  CCS '02: Proceedings of the 9th ACM conference on Computer and communications security,
+  pp.148-160, November 2002. （DOI: 10.1145/586110.586132）
 
 \end{thebibliography}
 
