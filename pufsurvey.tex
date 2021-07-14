@@ -96,10 +96,13 @@ POWFの簡略化した手順を以下に示す．
   \item スペックルパターンをガボール変換でフィルタリングし，鍵となるビット列（1次元）を生成する．
 \end{enumerate}
 
-POWFでは，各個体ごとにガラス玉（気泡）の含まれ方が異なることがユニーク性の根拠となっている．
 \subsubsection{Sillicon PUF}
 POWFは精密な光学機器で処理を行う必要があるため，アナログインターフェイスで使用するように作られている．
-一方で，Gassendは
+一方でGassendは，計算機やメモリと混載できるようにデジタルインターフェイスで動作する，半導体製のPUFを作成した\cite{gassend1}．
+
+このPUFは，各回路の遅延のばらつきを利用し，過渡応答を測定することでCRPsを生成する．
+過渡応答は，チャレンジによって刺激された経路上にあるIC内の配線やデバイスの遅延についての間接的な情報となる．
+この間接的な情報しかレスポンスとして与えられないことが，耐クローン性の根拠となっている．
 また，“PUF”という名前やPUFの定義が明記されたのは，この論文が最初である．
 \subsection{遅延ベースのPUF}
 \subsubsection{Arbiter PUF}
@@ -132,7 +135,7 @@ POWFは精密な光学機器で処理を行う必要があるため，アナロ�
   \bibitem{pappu}
   P.S. Ravikanth, “Physical One-Way Functions,” Massachesetts Institute of Technology,
   March 2001.
-  \bibitem{gassend2}
+  %\bibitem{gassend2}
 
   \bibitem{gassend1}
   B. Gassend, D. Clarke, M. Dijk, S. Devadas, “Silicon physical random funcions,”
