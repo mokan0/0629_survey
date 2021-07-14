@@ -1,5 +1,6 @@
 %\documentclass[paper]{ieicej}
-\documentclass[survey]{ieicej}% サーベイ論文
+%\documentclass[survey]{ieicej}% サーベイ論文
+\documentclass[technicalreport]{ieicej}
 %\documentclass[comment]{ieicej}% 解説論文
 %\usepackage[dvips]{graphicx}
 %\usepackage[dvipdfmx]{graphicx,xcolor}
@@ -15,9 +16,12 @@
 \jtitle{PUFについてのサーベイ論文（仮）}
 \etitle{Survey paper of PUF()}
 \authorlist{
- \authorentry{岡野 舞子}{Maiko Okano}{NAIST}\MembershipNumber{2111062}
+ \authorentry[okano.maiko.ol0@is.naist.jp]{岡野 舞子}{Maiko Okano}{NAIST}\MembershipNumber{2111062}
 }
-%\affiliate[]{}{}
+\affiliate[NAIST]{奈良先端科学技術大学院大学
+\hskip1zw 〒630–0192 奈良県生駒市高山町8916–5}{
+  Nara Institute of Science and Technology, 8916–5 Takayama-cho, Ikoma, Nara, Japan
+}
 %\affiliate[所属ラベル]{和文所属}{英文所属}
 %\paffiliate[]{}
 %\paffiliate[現在の所属ラベル]{和文所属}
@@ -97,8 +101,9 @@ POWFの簡略化した手順を以下に示す．
 \end{enumerate}
 
 \subsubsection{Sillicon PUF}
+\label{SPUF}
 POWFは精密な光学機器で処理を行う必要があるため，アナログインターフェイスで使用するように作られている．
-一方でGassendは，計算機やメモリと混載できるようにデジタルインターフェイスで動作する，半導体製のPUFを作成した\cite{gassend1}．
+一方でGassendは2002年に，計算機やメモリと混載できるようにデジタルインターフェイスで動作する，半導体製のPUFを提案した\cite{gassend1}．
 
 このPUFは，各回路の遅延のばらつきを利用し，過渡応答を測定することでCRPsを生成する．
 過渡応答は，チャレンジによって刺激された経路上にあるIC内の配線やデバイスの遅延についての間接的な情報となる．
@@ -106,6 +111,9 @@ POWFは精密な光学機器で処理を行う必要があるため，アナロ�
 また，“PUF”という名前やPUFの定義が明記されたのは，この論文が最初である．
 \subsection{遅延ベースのPUF}
 \subsubsection{Arbiter PUF}
+\ref{SPUF}節で説明したSillicon PUFは，回路の遅延が温度や電源電圧などの環境変化に敏感であるため，ノイズが重大な問題となっていた．
+そこでLimは2004年にSillicon PUFの再現性を改善させたArbiter PUF\cite{lim}を提案した．
+
 \subsubsection{Ring Ocillator PUF}
 \subsection{メモリベースのPUF}
 \subsubsection{SRAM PUF}
@@ -138,9 +146,13 @@ POWFは精密な光学機器で処理を行う必要があるため，アナロ�
   %\bibitem{gassend2}
 
   \bibitem{gassend1}
-  B. Gassend, D. Clarke, M. Dijk, S. Devadas, “Silicon physical random funcions,”
+  B. Gassend, D. Clarke, M. van Dijk, S. Devadas, “Silicon physical random funcions,”
   CCS '02: Proceedings of the 9th ACM conference on Computer and communications security,
   pp.148-160, November 2002. （DOI: 10.1145/586110.586132）
+  \bibitem{lim}
+  D. Lim, J.W. Lee, B. Gassend, G.E. Suh, M. van Dijk, S.Devadas,
+  “Extracting secret keys from integrated circuits,” IEEE Tran. Very Large Scale Integration (VLSI) Systems,
+  vol.13, no.10, pp.1200-1205, Oct. 2005.（DOI: 10.1109/TVLSI.2005.859470）
 
 \end{thebibliography}
 
