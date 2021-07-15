@@ -16,7 +16,8 @@
 \jtitle{PUFについてのサーベイ論文（仮）}
 \etitle{Survey paper of PUF()}
 \authorlist{
- \authorentry[okano.maiko.ol0@is.naist.jp]{岡野 舞子}{Maiko Okano}{NAIST}\MembershipNumber{2111062}
+ \authorentry[okano.maiko.ol0@is.naist.jp]{岡野 舞子}{Maiko Okano}{NAIST}\MembershipNumber{2111062?}
+ %以降，先輩方の名前を追加
 }
 \affiliate[NAIST]{奈良先端科学技術大学院大学
 \hskip1zw 〒630–0192 奈良県生駒市高山町8916–5}{
@@ -61,8 +62,9 @@
 しかし，本稿執筆時点（2021年7月2日）でPUFのセキュリティ要件及び試験方法は，ISO/IEC 20879にて議論中となっている．
 そのため，ここでの内容は主に菅原\cite{sugatake}とMaes\cite{maes1}に基づいている．
 
-まず，再現性・ユニーク性・耐クローン性の3つの特性について述べる．
-この3つの特性は，PUFの機能の根幹を支えるとりわけ重要な特性である．
+%まず，再現性・ユニーク性・耐クローン性の3つの特性について述べる．
+%この3つの特性は，PUFの機能の根幹を支えるとりわけ重要な特性である．
+本稿ではPUFの機能の根幹を支える，とりわけ重要な3つの特性（再現性・ユニーク性・耐クローン性）について述べる．
 \subsubsection{再現性（Reproducibility）}
 再現性とは，同一のPUFに同じチャレンジを繰り返し入力したとき，出力されるレスポンスのばらつきの小ささ，
 つまり安定度の高さを表す．PUFのレスポンスにはノイズが含まれており，同じ個体に同じチャレンジを入力しても
@@ -106,19 +108,20 @@ POWFは精密な光学機器で処理を行う必要があるため，アナロ�
 一方でGassendは2002年に，計算機やメモリと混載できるようにデジタルインターフェイスで動作する，半導体製のPUF（Sillicon PUF）を提案した\cite{gassend1}．
 Sillicon PUFは前述のPOWFと異なり，暗号実装のハードウェア構成要素としてすぐに導入することができるため，
 現在研究されているPUF構築の主要な種類となっている．
-%このPUFは，各回路の遅延のばらつきを利用し，過渡応答を測定することでCRPsを生成する．
-%過渡応答は，チャレンジによって刺激された経路上にあるIC内の配線やデバイスの遅延についての間接的な情報となる．
-%この間接的な情報しかレスポンスとして与えられないことが，耐クローン性の根拠となっている．
 
-Gassendが提案したPUF\cite{gassend1}の構成は，\ref{ROPUF}節で紹介する．
+Gassendが提案したPUF\cite{gassend1}の構成は，\ref{ROPUF}節のRing Ocillator PUFの起源となっている．
+このPUFは，各回路の遅延のばらつきを利用し，過渡応答を測定することでCRPsを生成する．
+過渡応答は，チャレンジによって刺激された経路上にあるIC内の配線やデバイスの遅延についての間接的な情報となる．
+この間接的な情報しかレスポンスとして与えられないことが，耐クローン性の根拠となっている．
+
 また，“PUF”という名前やPUFの定義が明記されたのは，この論文が最初である．
 
 \subsection{遅延ベースのPUF}
 \subsubsection{Arbiter PUF}
-\ref{SilliconPUF}節で説明したSillicon PUFは回路の遅延が温度や電源電圧などの環境変化に敏感であるため，
-PUFの信頼性を高めるためにはノイズが重大な問題である，とLeeは指摘を行った\cite{lee}．
+\ref{SilliconPUF}節のGassendが提案したPUFは，回路の遅延が温度や電源電圧などの環境変化に敏感であるため，
+PUFの信頼性を高めるためにはノイズが重大な問題となる，とLeeは指摘を行った\cite{lee}．
 そこでLimらは2004年にSillicon PUFの再現性を改善させたArbiter PUF\cite{lim}を実装した．
-Arbiter PUFは差動構造（Arbiter）に基づいており，環境に起因するノイズに対するPUFの再現性を向上させることができる．
+Arbiter PUFは差動構造（Arbiter）に基づいており，環境に起因するノイズに対するPUFの再現性を向上させることが可能である．
 これは，PUFのレスポンスに対する絶対的な遅延値を測定する代わりに，2つの同一の遅延経路を比較し，
 Arbiterを用いてデジタル情報を生成するためである．
 
@@ -161,7 +164,17 @@ Arbiter PUFの構造は前半と後半に分けられる．
 
 \subsubsection{Ring Ocillator PUF}
 \label{ROPUF}
+2007年にSuhによって提案されたRing Ocillator PUF（RO PUF）は，ROの発振周波数が製造ばらつきによって異なることを基にしたPUFである．
+ROは奇数個のインバータから構成されている．
+奇数個のインバータをループ上に並べ，その中のある一点の値を出力に利用することでROの出力は一定の周期で0と1を繰り返す．
+インバータの個数や配線方法などがまったく同じROであっても，回路内部の部品の製造ばらつきによって微妙に発振周波数が異なり，
+RO PUFではこの発振周波数の違いを用いてPUFの機能を提供する．
+RO PUFでは3個以上のROが用いられており，その中からチャレンジの値によって2つのROを選出する．
+そしてその2つのROの周波数の比較によってレスポンスとなる0か1のビットを出力する．
 
+図\ref{ROPUF-fig}のように複数（この場合は$N$個）のROはMUXに接続され，チャレンジはそのMUXのセレクタとして用いられる．
+セレクタにより選ばれた2つの信号はそれぞれ別のカウンター回路に入力しており，カウンター回路で計測された一定時間あたりの
+発振回数が比較されその毛化によってRO PUFから0か1の値が出力される．
 \subsection{メモリベースのPUF}
 \subsubsection{SRAM PUF}
 \subsubsection{Butterfly PUF}
@@ -172,8 +185,9 @@ Arbiter PUFの構造は前半と後半に分けられる．
 \section{問題点や攻撃}
 \subsection{暗号としてのPUF利用（仮）}
 
-\subsection{PUFに対する攻撃}
+\subsection{PUFに対する攻撃と対策}
 \subsubsection{モデリング解析}
+Arbiter,RO
 \section{まとめ}
 
 %\ack %% 謝辞
@@ -208,6 +222,9 @@ Arbiter PUFの構造は前半と後半に分けられる．
   \bibitem{lim}
   D. Lim, “Extracting Secret Keys from Integrated Circuits,” Master's Thesis,
   Massachusetts Institute of Technology, March 2004.
+  \bibitem{suh}
+  G.E. Suh, S. Devadas,“Physical Unclonable Functions for Device Authentication and Secret Key Generation,”
+  2007 44th ACM/IEEE Design Automation Conference, pp.9-14, June 2007.
 
 \end{thebibliography}
 
