@@ -1,6 +1,6 @@
 %\documentclass[paper]{ieicej}
 %\documentclass[survey]{ieicej}% サーベイ論文
-\documentclass[technicalreport]{ieicej}
+\documentclass[technicalreport]{ieicej} %今回のサーベイ論文の形式（多分）
 %\documentclass[comment]{ieicej}% 解説論文
 %\usepackage[dvips]{graphicx}
 %\usepackage[dvipdfmx]{graphicx,xcolor}
@@ -101,7 +101,7 @@ POWFの簡略化した手順を以下に示す．
 \end{enumerate}
 
 \subsubsection{Sillicon PUF}
-\label{SPUF}
+\label{SilliconPUF}
 POWFは精密な光学機器で処理を行う必要があるため，アナログインターフェイスで使用するように作られている．
 一方でGassendは2002年に，計算機やメモリと混載できるようにデジタルインターフェイスで動作する，半導体製のPUFを提案した\cite{gassend1}．
 
@@ -111,11 +111,49 @@ POWFは精密な光学機器で処理を行う必要があるため，アナロ�
 また，“PUF”という名前やPUFの定義が明記されたのは，この論文が最初である．
 \subsection{遅延ベースのPUF}
 \subsubsection{Arbiter PUF}
-\ref{SPUF}節で説明したSillicon PUFは，回路の遅延が温度や電源電圧などの環境変化に敏感であるため，ノイズが重大な問題となっていた．
-そこでLimは2004年にSillicon PUFの再現性を改善させたArbiter PUF\cite{lim}を提案した．
-Arbiter PUFは差動（Arbiter）構造に基づいており，環境に起因するノイズに対するPUFの再現性を向上させることができる．
-PUFのレスポンスに対する絶対的な遅延値を測定する代わりに，2つの同一の遅延経路を比較し，アービターを用いてデジタル情報を生成する．
+\ref{SilliconPUF}節で説明したSillicon PUFは回路の遅延が温度や電源電圧などの環境変化に敏感であるため，
+PUFの信頼性を高めるためにはノイズが重大な問題である，とLeeは指摘を行った\cite{lee}．
+そこでLimらは2004年にSillicon PUFの再現性を改善させたArbiter PUF\cite{lim}を実装した．
+Arbiter PUFは差動構造（Arbiter）に基づいており，環境に起因するノイズに対するPUFの再現性を向上させることができる．
+これは，PUFのレスポンスに対する絶対的な遅延値を測定する代わりに，2つの同一の遅延経路を比較し，
+Arbiterを用いてデジタル情報を生成するためである．
 
+%ここでアービターPUFの図を入れたい\label{APUF}
+%前半，後半で分ける余裕があるかはわからん
+Arbiter PUFの構造は前半と後半に分けられる．
+2つの入力から立ち上がり信号（＝チャレンジ）が同時に入力され，
+前半部ではチャレンジによって，2つの信号がどのような経路を伝搬するかが決定される．
+図\ref{APUF}のとおり2つのMUXによってスイッチボックスが実装されており，これはチャレンジのビット数の分用意される．
+スイッチボックスの動作は，チャレンジのビットが1のときは上下に流れる信号の経路を交差，0のときは直進となっている．
+
+後半部では，どちらの信号が先に到達したかによって0か1のレスポンスを出力する．
+ここでは1つのトランスペアレントラッチが使用されており，これは表\ref{apuf-transparent}が示すような動作を行う．
+%表\label{apuf-tranparent}
+\begin{table}[tb]
+  \caption{和文キャプション}
+  \label{apuf-transparent}
+  %\ecaption{英文キャプション}
+  \begin{center}
+    \begin{tabular}{|l|l|l|}
+      \Hline %% ←
+      \multicolumn{2}{|c|}{\textbf{Inputs}} & \multicolumn{1}{c|}{\textbf{Outputs}}              \\
+      \hline
+      \textbf{G}                            & \textbf{D}                            & \textbf{Q} \\
+      \hline
+      0                                     & 0                                     & 0          \\
+      \hline
+      0                                     & 1                                     & 1          \\
+      \hline
+      1                                     & X                                     & No Change  \\
+      \hline
+      $\uparrow$                            & D                                     & d          \\
+      \Hline %% ←
+    \end{tabular}
+  \end{center}
+\end{table}
+2つの立ち上がり信号が違うタイミングでDとGに入力された場合，Gに立ち上がり信号が入力された瞬間のDの値を常に出力し続ける．
+つまり，Dに先に立ち上がり信号が到達した場合，その後Gに立ち上がり信号が到達することを意味するため，レスポンスは1となる．
+逆にGに先に立ち上がり信号が到達した場合は，その時点でのDには0が入力されていることからレスポンスは0となる．
 \subsubsection{Ring Ocillator PUF}
 \subsection{メモリベースのPUF}
 \subsubsection{SRAM PUF}
@@ -143,18 +181,26 @@ PUFのレスポンスに対する絶対的な遅延値を測定する代わり�
   R. Maes, Physically Unclonable Functions: Properties, Springer, Berlin, Heidelbelg, 2013.
   （DOI:10.1007/978-3-642-41395-7\_3）
   \bibitem{pappu}
-  P.S. Ravikanth, “Physical One-Way Functions,” Massachesetts Institute of Technology,
-  March 2001.
+  P.S. Ravikanth, “Physical One-Way Functions,” PhD thesis,
+  Massachusetts Institute of Technology, March 2001.
   %\bibitem{gassend2}
 
   \bibitem{gassend1}
   B. Gassend, D. Clarke, M. van Dijk, S. Devadas, “Silicon physical random funcions,”
   CCS '02: Proceedings of the 9th ACM conference on Computer and communications security,
   pp.148-160, November 2002. （DOI: 10.1145/586110.586132）
+  \bibitem{lee}
+  J.W. Lee, D. Lim, B. Gassend, G.E. Suh, M. van Dijk, S. Devadas,
+  “A Technique to Build a Secret Key in Integrated Circuits for Identification and Authentication Applications,”
+  2004 Symposium on VLSI Circuits. Digest of Technical Papers (IEEE Cat. No.04CH37525),
+  pp. 176-179, June 2004. （DOI: 10.1109/VLSIC.2004.1346548）
+  %\bibitem{lim}
+  %D. Lim, J.W. Lee, B. Gassend, G.E. Suh, M. van Dijk, S.Devadas,
+  %“Extracting secret keys from integrated circuits,” IEEE Tran. Very Large Scale Integration (VLSI) Systems,
+  %vol.13, no.10, pp.1200-1205, Oct. 2005.（DOI: 10.1109/TVLSI.2005.859470）
   \bibitem{lim}
-  D. Lim, J.W. Lee, B. Gassend, G.E. Suh, M. van Dijk, S.Devadas,
-  “Extracting secret keys from integrated circuits,” IEEE Tran. Very Large Scale Integration (VLSI) Systems,
-  vol.13, no.10, pp.1200-1205, Oct. 2005.（DOI: 10.1109/TVLSI.2005.859470）
+  D. Lim, “Extracting Secret Keys from Integrated Circuits,” Master's Thesis,
+  Massachusetts Institute of Technology, March 2004.
 
 \end{thebibliography}
 
