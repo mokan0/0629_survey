@@ -113,6 +113,8 @@ POWFは精密な光学機器で処理を行う必要があるため，アナロ�
 \subsubsection{Arbiter PUF}
 \ref{SPUF}節で説明したSillicon PUFは，回路の遅延が温度や電源電圧などの環境変化に敏感であるため，ノイズが重大な問題となっていた．
 そこでLimは2004年にSillicon PUFの再現性を改善させたArbiter PUF\cite{lim}を提案した．
+Arbiter PUFは差動（Arbiter）構造に基づいており，環境に起因するノイズに対するPUFの再現性を向上させることができる．
+PUFのレスポンスに対する絶対的な遅延値を測定する代わりに，2つの同一の遅延経路を比較し，アービターを用いてデジタル情報を生成する．
 
 \subsubsection{Ring Ocillator PUF}
 \subsection{メモリベースのPUF}
