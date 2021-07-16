@@ -179,9 +179,27 @@ RO PUFでは3個以上のROが用いられており，その中からチャレ�
 \subsubsection{SRAM PUF}
 \subsubsection{Butterfly PUF}
 \subsection{その他の特徴を持つPUF}
-\subsection{Strong/Weak PUF}
-\subsection{Controlled/Uncontrolled PUF}
 
+\subsection{Strong/Weak PUF}
+PUFは，CRPの空間の広さによってStrong PUFとWeak PUFの2つに分けられる．
+
+Strong PUFはCRPの空間が極めて広いPUFであり，チャレンジ長が増大するとCRP空間が指数関数的に増大する．
+また十分に長いチャレンジを与えることができる，という特徴をもつ．
+例としてはArbiter PUFが挙げられる．
+スイッチボックスの個数が$n$個の場合チャレンジ数は$2^n$個となるため，$n=128$のときペア数は$2^{128}$となり
+CRPを全通り試すことは困難になる．
+
+Weak PUFはCRP空間が狭いPUFであり，物理的な制約によって十分なチャレンジ長を確保することができないPUFである．
+例としてRO PUFとSRAM PUFが挙げられる．
+RO PUFではチップに搭載できるROの数が制限されるので，チャレンジ長が短くなる．
+SRAM PUFは搭載できるメモリ素子の数に限りがあるので，チャレンジ長は高々アドレス長までとなる．
+典型的なSRAMのサイズは数キロバイトから数メガバイトであり，SRAM PUFを全探索攻撃から防ぐことは困難である．
+
+ところで，Strong/Weak PUFの"Strong/Weak"はPUFの実利用におけるセキュリティ強度とは，直接結びつかないことに注意する必要がある．
+例として，PUFを製品の真贋鑑定の認証として用いるか，セキュリティパラメータの生成として用いるかでは，求められるCRP空間の広さは異なる．
+現在，Strong/Weakの名前はしばしば誤解を生じさせることがあるので，ISO/IEC 29897で別の名称（Extensive/Confined）が提案されている\cite{hori nedo}．
+\subsection{Controlled/Uncontrolled PUF}
+PUFには大きく分けて2つの方法がある．
 \section{問題点や攻撃}
 \subsection{暗号としてのPUF利用（仮）}
 
