@@ -164,7 +164,7 @@ Arbiter PUFの構造は前半と後半に分けられる．
 
 \subsubsection{Ring Ocillator PUF}
 \label{ROPUF}
-2007年にSuhによって提案されたRing Ocillator PUF（RO PUF）は，ROの発振周波数が製造ばらつきによって異なることを基にしたPUFである．
+2007年にSuhによって提案されたRing Ocillator PUF（RO PUF）\cite{suh}は，ROの発振周波数が製造ばらつきによって異なることを基にしたPUFである．
 ROは奇数個のインバータから構成されている．
 奇数個のインバータをループ上に並べ，その中のある一点の値を出力に利用することでROの出力は一定の周期で0と1を繰り返す．
 インバータの個数や配線方法などがまったく同じROであっても，回路内部の部品の製造ばらつきによって微妙に発振周波数が異なり，
@@ -177,11 +177,38 @@ RO PUFでは3個以上のROが用いられており，その中からチャレ�
 発振回数が比較されその毛化によってRO PUFから0か1の値が出力される．
 \subsection{メモリベースのPUF}
 \subsubsection{SRAM PUF}
+\label{SRAM PUF}
+SRAM PUFとは，電源投入直後にまだ何も書き込んでいないSRAMから読みだした値（初期値）を個体差として利用するPUFである\cite{sugatake}．
+2006年にSimpsonによって，PUFを利用してFPGAのIP保護を行うというアプローチ\cite{simpson}が提案された．
+この提案を元に，2007年にGuajardoはFPGAに搭載されているSRAMをPUFとして実装\cite{guajaudo}した．
+また，同時期の類似研究としてHolcombのFERNS（Fingerprint Extravtion and Random Numbers in SRAM）\cite{holcomb}がある．
+FERNSはSRAM PUFと非常に類似しているが，市販のSRAMチップとマイクロコントローラチップに組み込まれたSRAMという
+2つの異なるプラットフォームで実装がされている点で，Guajaudoの研究とは異なっている\cite{maes1}．
+
+
 \subsubsection{Butterfly PUF}
 \subsection{その他の特徴を持つPUF}
-\subsection{Strong/Weak PUF}
-\subsection{Controlled/Uncontrolled PUF}
 
+\subsection{Strong/Weak PUF}
+PUFは，CRPの空間の広さによってStrong PUFとWeak PUFの2つに分けられる．
+
+Strong PUFはCRPの空間が極めて広いPUFであり，チャレンジ長が増大するとCRP空間が指数関数的に増大する．
+また十分に長いチャレンジを与えることができる，という特徴をもつ．
+例としてはArbiter PUFが挙げられる．
+スイッチボックスの個数が$n$個の場合チャレンジ数は$2^n$個となるため，$n=128$のときペア数は$2^{128}$となり
+CRPを全通り試すことは困難になる．
+
+Weak PUFはCRP空間が狭いPUFであり，物理的な制約によって十分なチャレンジ長を確保することができないPUFである．
+例としてRO PUFとSRAM PUFが挙げられる．
+RO PUFではチップに搭載できるROの数が制限されるので，チャレンジ長が短くなる．
+SRAM PUFは搭載できるメモリ素子の数に限りがあるので，チャレンジ長は高々アドレス長までとなる．
+典型的なSRAMのサイズは数キロバイトから数メガバイトであり，SRAM PUFを全探索攻撃から防ぐことは困難である．
+
+ところで，Strong/Weak PUFの"Strong/Weak"はPUFの実利用におけるセキュリティ強度とは，直接結びつかないことに注意する必要がある．
+例として，PUFを製品の真贋鑑定の認証として用いるか，セキュリティパラメータの生成として用いるかでは，求められるCRP空間の広さは異なる．
+現在，Strong/Weakの名前はしばしば誤解を生じさせることがあるので，ISO/IEC 29897で別の名称（Extensive/Confined）が提案されている\cite{hori nedo}．
+\subsection{Controlled/Uncontrolled PUF}
+PUFには大きく分けて2つの方法がある．
 \section{問題点や攻撃}
 \subsection{暗号としてのPUF利用（仮）}
 
@@ -225,6 +252,27 @@ Arbiter,RO
   \bibitem{suh}
   G.E. Suh, S. Devadas,“Physical Unclonable Functions for Device Authentication and Secret Key Generation,”
   2007 44th ACM/IEEE Design Automation Conference, pp.9-14, June 2007.
+  \bibitem{simpson}
+  E. Simpson, P. Schaumont, Offline Hardware/Software Authentication for Reconfigurable Platforms.
+  In: Goubin L., Matsui M. (eds) Cryptographic Hardware and Embedded Systems - CHES 2006.
+  CHES 2006. Lecture Notes in Computer Science, vol 4249, Springer, Berlin, Heidelberg, 2006.
+  （DOI: 10.1007/11894063\_25）
+  \bibitem{guajaudo}
+  J. Guajardo, S.S. Kumar, GJ. Schrijen, P. Tuyls, FPGA Intrinsic PUFs and Their Use for IP Protection,
+  Proceedings of International Workshop on Cryptographic Hardware and Embedded Systems (CHES) 2007,
+  Lecture Notes in ComputerScience, vol 4727, Springer-Verlag, pp. 63–80, 2007.
+  （DOI: 10.1007/978-3-540-74735-2\_5）
+  \bibitem{holcomb}
+  D. E. Holcomb, W. P. Burleson , K. Fu,
+  "Power-Up SRAM State as an Identifying Fingerprint and Source of True Random Numbers,"
+  in IEEE Transactions on Computers, vol. 58, no. 9, pp. 1198-1210, Sept. 2009.
+  （DOI: 10.1109/TC.2008.212.）
+
+  \bibitem{hori-nedo}
+  堀洋平，“Physically Unclonable Function（PUF）の基礎，応用と標準化について,”
+
+  https://www.iot-aidevice.org/app/download/14287213230/AI2oT3\_堀\_+PUFの基礎\_応用と標準化.pdf?t=1548407303,
+  参照July 16, 2021.
 
 \end{thebibliography}
 

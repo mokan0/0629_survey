@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.sjis) (TeX Live 2021/W32TeX) (preloaded format=platex 2021.6.2)  15 JUL 2021 23:17
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.sjis) (TeX Live 2021/W32TeX) (preloaded format=platex 2021.6.2)  16 JUL 2021 17:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -429,20 +429,27 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 
 LaTeX Warning: Reference `ROPUF-fig' on page 2 undefined on input line 175.
 
-[2] [3
+[2]
 
-] (out/pufsurvey.aux)
+LaTeX Warning: Citation `hori nedo' on page 3 undefined on input line 209.
+
+
+Overfull \hbox (3.7525pt too wide) in paragraph at lines 274--276
+[]\T1/ntxtlf/m/n/8 https://www.iot-aidevice.org/app/download/14287213230/AI2oT3_\JY1/mc/m/n/8 堀
+ []
+
+[3] (out/pufsurvey.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5526 strings out of 479021
- 68247 string characters out of 5866498
+ 5531 strings out of 479021
+ 68296 string characters out of 5866498
  377524 words of memory out of 5000000
- 23623 multiletter control sequences out of 15000+600000
+ 23628 multiletter control sequences out of 15000+600000
  489257 words of font info for 186 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  57i,10n,66p,380b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on out/pufsurvey.dvi (3 pages, 20792 bytes).
+Output written on out/pufsurvey.dvi (3 pages, 26888 bytes).
