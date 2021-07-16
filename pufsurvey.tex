@@ -197,6 +197,13 @@ MOSFETの「強さ」に違いが出るためである\cite{maes1}．
 したがって，各SRAMセルはランダムに0と1のいずれかに遷移していくため，これがPUFのユニーク性の根拠となる．
 また，チャレンジはSRAM内の特定のセルのアドレスである．
 \subsubsection{Butterfly PUF}
+2008年にKumarらは，起動時にSRAMセルと同様の動作をする構造をFPGAマトリクス内に実装し，これをButterfly PUF\cite{kumar}として提案した．
+これはほとんどの市販FPGAに搭載されているSRAMは，電源投入直後に強制的にクリアされるため，
+\ref{SRAM PUF}節で説明したセルごとのランダムな初期値をPUFとして利用することができないからである．
+
+Butterfly PUFの実装は，2つの透過的なデータラッチを交差結合し，SRAMセルの動作をFPGAのりコンフィギュレーションロジックで模倣することで行われる．
+ラッチを使って交差結合構造を作り，これにより励起状態によって不安定な状態となる．
+そして，しばらくすると2種類の安定状態のうちの1つに落ち着くため，これがPUFのレスポンスとなる．
 \subsection{その他の特徴を持つPUF}
 
 \subsection{Strong/Weak PUF}
@@ -301,6 +308,11 @@ Arbiter,RO
   "Controlled physical random functions and applications,"
   ACM Transactions on Information and System Security, Volume 10, Issue 4, Article No.3, pp 1–22,
   Jan. 2008.（DOI:10.1145/1284680.1284683）
+  \bibitem{kumar}
+  S.S. Kumar, J. Guajardo, R. Maes, G. Schrijen, P. Tuyls,
+  "Extended abstract: The butterfly PUF protecting IP on every FPGA,"
+  2008 IEEE International Workshop on Hardware-Oriented Security and Trust, pp.67-70,
+  June 2008.（DOI: 10.1109/HST.2008.4559053）
 \end{thebibliography}
 
 %\appendix
