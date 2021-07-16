@@ -206,9 +206,20 @@ SRAM PUFは搭載できるメモリ素子の数に限りがあるので，チャ
 
 ところで，Strong/Weak PUFの"Strong/Weak"はPUFの実利用におけるセキュリティ強度とは，直接結びつかないことに注意する必要がある．
 例として，PUFを製品の真贋鑑定の認証として用いるか，セキュリティパラメータの生成として用いるかでは，求められるCRP空間の広さは異なる．
-現在，Strong/Weakの名前はしばしば誤解を生じさせることがあるので，ISO/IEC 29897で別の名称（Extensive/Confined）が提案されている\cite{hori nedo}．
+現在，Strong/Weakの名前はしばしば誤解を生じさせることがあるので，ISO/IEC 29897で別の名称（Extensive/Confined）が提案されている\cite{hori-nedo}．
+
 \subsection{Controlled/Uncontrolled PUF}
-PUFには大きく分けて2つの方法がある．
+Controlled PUFとは，特定のAPIでしかアクセスできないようにアルゴリズムで制御されたPUFである\cite{gassend-cpuf1}\cite{gassend-cpuf2}．
+逆にPUFへのアクセス制御がなく，誰でもPUFの生の入出力にアクセスできる場合は，Uncontrolled PUFと呼ぶ．
+
+Uncontrolled PUFはシンプルな利用法であり，アクセス制御のためのデジタル回路が不要であることから，
+回路をより小型にすることができるという利点がある\cite{sugatake}．
+しかし，攻撃者はありうるすべてのチャレンジをPUFに入力することで，対応するレスポンスを入手して対応表を作るクローン攻撃が可能となる．
+このような攻撃に対しUncontrolled PUFは，CRPを全探索できないほど大きくする方法でしか対策を行えない．
+
+Controlled PUFは物理的に分離できない方法で結合された，例えばハッシュ関数のようなアルゴリズムを
+通して入出力することで，攻撃者にCRPsを知られることを防ぎモデリング解析の対策になると考えられている．
+そのため，SRAM PUFやRO PUFなどのWeak PUFはControlled PUFとして実装されることが望ましい．
 \section{問題点や攻撃}
 \subsection{暗号としてのPUF利用（仮）}
 
@@ -269,11 +280,18 @@ Arbiter,RO
   （DOI: 10.1109/TC.2008.212.）
 
   \bibitem{hori-nedo}
-  堀洋平，“Physically Unclonable Function（PUF）の基礎，応用と標準化について,”
-
-  https://www.iot-aidevice.org/app/download/14287213230/AI2oT3\_堀\_+PUFの基礎\_応用と標準化.pdf?t=1548407303,
+  堀洋平，“Physically Unclonable Function（PUF）の基礎，応用と標準化について,” https://www.iot-aidevice.org/app/download/14287213\\
+  230/AI2oT3\_堀\_+PUFの基礎\_応用と標準化.pdf?t=1548407303,
   参照July 16, 2021.
-
+  \bibitem{gassend-cpuf1}
+  B. Gassend, D. Clarke, M. van Dijk and S. Devadas, "Controlled physical random functions,"
+  18th Annual Computer Security Applications Conference, 2002. Proceedings.,
+  pp. 149-160, Nov. 2002. （Doi: 10.1109/CSAC.2002.1176287）
+  \bibitem{gassend-cpuf2}
+  B. Gassend, M. van Dijk, D.Clarke, E.Torlak, S. Devadas, P.Tuyls,
+  "Controlled physical random functions and applications,"
+  ACM Transactions on Information and System Security, Volume 10, Issue 4, Article No.3, pp 1–22,
+  Jan. 2008.（DOI:10.1145/1284680.1284683）
 \end{thebibliography}
 
 %\appendix
