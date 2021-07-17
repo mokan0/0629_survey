@@ -94,9 +94,10 @@ PUFの個体差，つまりユニーク性は高いほうがよい．
 もう1つはクローンの制作を試みる攻撃への耐性を持つ（クローンを作るための既知の攻撃が存在しない）ことである．
 
 
-\section{PUFの分類}
-\subsection{初期のPUF}
-\subsubsection{Physical one-way functions}
+\section{様々なPUF}
+\subsection{PUFの歴史と構築法}
+\subsubsection{初期のPUF}
+\paragraph{Physical one-way functions}
 PUFの始祖とされているのは，2001年にPappuが提案した物理的一方向性関数（Physical one-way functions: POWF）\cite{pappu}である．
 背景としては，既存の数論に基づいた一方向性関数の課題に対する解決策として提案された．
 POWFの簡略化した手順を以下に示す．
@@ -106,7 +107,7 @@ POWFの簡略化した手順を以下に示す．
   \item スペックルパターンをガボール変換でフィルタリングし，鍵となるビット列（1次元）を生成する．
 \end{enumerate}
 
-\subsubsection{Sillicon PUF}
+\paragraph{Sillicon PUF}
 \label{SilliconPUF}
 POWFは精密な光学機器で処理を行う必要があるため，アナログインターフェイスで使用するように作られている．
 一方でGassendは2002年に，計算機やメモリと混載できるようにデジタルインターフェイスで動作する，半導体製のPUF（Sillicon PUF）を提案した\cite{gassend1}．
@@ -120,8 +121,10 @@ Gassendが提案したPUF\cite{gassend1}の構成は，\ref{ROPUF}節のRing Oci
 
 また，“PUF”という名前やPUFの定義が明記されたのは，この論文が最初である．
 
-\subsection{遅延ベースのPUF}
-\subsubsection{Arbiter PUF}
+\subsubsection{遅延ベースのPUF}
+\label{delaypuf}
+\paragraph{Arbiter PUF}
+\label{apuf}
 \ref{SilliconPUF}節のGassendが提案したPUFは，回路の遅延が温度や電源電圧などの環境変化に敏感であるため，
 PUFの信頼性を高めるためにはノイズが重大な問題となる，とLeeは指摘を行った\cite{lee}．
 そこでLimらは2004年にSillicon PUFの再現性を改善させたArbiter PUF\cite{lim}を実装した．
@@ -166,9 +169,9 @@ Arbiter PUFの構造は前半と後半に分けられる．
 つまり，Dに先に立ち上がり信号が到達した場合，その後Gに立ち上がり信号が到達することを意味するため，レスポンスは1となる．
 逆にGに先に立ち上がり信号が到達した場合は，その時点でのDには0が入力されていることからレスポンスは0となる．
 
-\subsubsection{Ring Ocillator PUF}
+\paragraph{Ring Oscillator PUF}
 \label{ROPUF}
-2007年にSuhによって提案されたRing Ocillator PUF（RO PUF）\cite{suh}は，ROの発振周波数が製造ばらつきによって異なることを基にしたPUFである．
+2007年にSuhによって提案されたRing Oscillator PUF（RO PUF）\cite{suh}は，ROの発振周波数が製造ばらつきによって異なることを基にしたPUFである．
 ROは奇数個のインバータから構成されている．
 奇数個のインバータをループ上に並べ，その中のある一点の値を出力に利用することでROの出力は一定の周期で0と1を繰り返す．
 インバータの個数や配線方法などがまったく同じROであっても，回路内部の部品の製造ばらつきによって微妙に発振周波数が異なり，
@@ -179,8 +182,9 @@ RO PUFでは3個以上のROが用いられており，その中からチャレ�
 図\ref{ROPUF-fig}のように複数（この場合は$N$個）のROはMUXに接続され，チャレンジはそのMUXのセレクタとして用いられる．
 セレクタにより選ばれた2つの信号はそれぞれ別のカウンター回路に入力しており，カウンター回路で計測された一定時間あたりの
 発振回数が比較されその結果によってRO PUFから0か1の値が出力される．
-\subsection{メモリベースのPUF}
-\subsubsection{SRAM PUF}
+\subsubsection{メモリベースのPUF}
+\label{memorypuf}
+\paragraph{SRAM PUF}
 \label{SRAM PUF}
 SRAM PUFとは，電源投入直後にまだ何も書き込んでいないSRAMから読みだした値（初期値）を個体差として利用するPUFである\cite{sugatake}．
 2006年にSimpsonによって，PUFを利用してFPGAのIP保護を行うというアプローチ\cite{simpson}が提案された．
@@ -196,17 +200,18 @@ SRAM PUFの動作原理は，SRAMセルの電源投入時の過渡的な動作�
 MOSFETの「強さ」に違いが出るためである\cite{maes1}．
 したがって，各SRAMセルはランダムに0と1のいずれかに遷移していくため，これがPUFのユニーク性の根拠となる．
 また，チャレンジはSRAM内の特定のセルのアドレスである．
-\subsubsection{Butterfly PUF}
+\paragraph{Butterfly PUF}
 2008年にKumarらは，起動時にSRAMセルと同様の動作をする構造をFPGAマトリクス内に実装し，これをButterfly PUF\cite{kumar}として提案した．
 これはほとんどの市販FPGAに搭載されているSRAMは，電源投入直後に強制的にクリアされるため，
 \ref{SRAM PUF}節で説明したセルごとのランダムな初期値をPUFとして利用することができないからである．
 
-Butterfly PUFの実装は，2つの透過的なデータラッチを交差結合し，SRAMセルの動作をFPGAのりコンフィギュレーションロジックで模倣することで行われる．
+Butterfly PUFの実装は，2つの透過的なデータラッチを交差結合し，SRAMセルの動作をFPGAのリコンフィギュレーションロジックで模倣することで行われる．
 ラッチを使って交差結合構造を作り，これにより励起状態によって不安定な状態となる．
 そして，しばらくすると2種類の安定状態のうちの1つに落ち着くため，これがPUFのレスポンスとなる．
-\subsection{その他の特徴を持つPUF}
+\subsubsection{その他の特徴を持つPUF}
 
-\subsection{Strong/Weak PUF}
+\subsection{PUFの分類}
+\subsubsection{Strong/Weak PUF}
 PUFは，CRPの空間の広さによってStrong PUFとWeak PUFの2つに分けられる．
 
 Strong PUFはCRPの空間が極めて広いPUFであり，チャレンジ長が増大するとCRP空間が指数関数的に増大する．
@@ -216,8 +221,7 @@ Strong PUFはCRPの空間が極めて広いPUFであり，チャレンジ長が�
 CRPを全通り試すことは困難になる．
 
 Weak PUFはCRP空間が狭いPUFであり，物理的な制約によって十分なチャレンジ長を確保することができないPUFである．
-例としてRO PUFとSRAM PUFが挙げられる．
-RO PUFではチップに搭載できるROの数が制限されるので，チャレンジ長が短くなる．
+例としてSRAM PUFが挙げられる．
 SRAM PUFは搭載できるメモリ素子の数に限りがあるので，チャレンジ長は高々アドレス長までとなる．
 典型的なSRAMのサイズは数キロバイトから数メガバイトであり，SRAM PUFを全探索攻撃から防ぐことは困難である．
 
@@ -225,7 +229,7 @@ SRAM PUFは搭載できるメモリ素子の数に限りがあるので，チャ
 例として，PUFを製品の真贋鑑定の認証として用いるか，セキュリティパラメータの生成として用いるかでは，求められるCRP空間の広さは異なる．
 現在，Strong/Weakの名前はしばしば誤解を生じさせることがあるので，ISO/IEC 29897で別の名称（Extensive/Confined）が提案されている\cite{hori-nedo}．
 
-\subsection{Controlled/Uncontrolled PUF}
+\subsubsection{Controlled/Uncontrolled PUF}
 Controlled PUFとは，特定のAPIでしかアクセスできないようにアルゴリズムで制御されたPUFである\cite{gassend-cpuf1}\cite{gassend-cpuf2}．
 逆にPUFへのアクセス制御がなく，誰でもPUFの生の入出力にアクセスできる場合は，Uncontrolled PUFと呼ぶ．
 
@@ -235,13 +239,46 @@ Uncontrolled PUFはシンプルな利用法であり，アクセス制御のた�
 このような攻撃に対しUncontrolled PUFは，CRPを全探索できないほど大きくする方法でしか対策を行えない．
 
 Controlled PUFはPUFの生データを秘匿するため，攻撃者にCRPsを知られることを防ぎモデリング解析の対策になると考えられている．
-そのため，SRAM PUFやRO PUFなどのWeak PUFはControlled PUFとして実装されることが望ましい．
-\section{問題点や攻撃}
-\subsection{暗号としてのPUF利用（仮）}
+そのため，SRAM PUFなどのWeak PUFはControlled PUFとして実装されることが望ましい．
+\section{PUFの利用法}
+\label{puf use}
+\subsection{真贋判定・個体識別}
+\subsection{鍵の生成}
+\subsection{チャレンジ・レスポンス認証}
+\section{PUFに対する攻撃}
+\subsection{モデリング攻撃}
+モデリング攻撃とは，PUFからCRPsやサイドチャネルなどの情報を取得して，それを用いてPUFのクローンとなる関数を生成する攻撃である．
+\ref{puf use}章で紹介したようにPUFをセキュリティの要素として使うためには，あるチャレンジに対応するレスポンスが推定されないことが重要である．
 
-\subsection{PUFに対する攻撃と対策}
-\subsubsection{モデリング解析}
-Arbiter,RO
+\ref{delaypuf}節\ref{apuf}のArbiter PUFは導入当初から，モデリング攻撃を受けやすいことが認識されていた\cite{maes1}\cite{lim}．
+これは，PUFの再現性を高めるためにArbiter PUFのチャレンジとレスポンスの間の依存関係の複雑さが軽減されたためである．
+とはいえ，Arbiter PUF以外のPUFも機械学習の発展により，モデリング攻撃の研究が多数存在する．
+
+モデリング攻撃はPUFに対する攻撃として最も主流であり，現在に至るまで多くの結果が報告されている．
+今回，モデリング攻撃をするにあたってどのPUF情報を利用したかによって，モデリング攻撃の分類を行う．
+\subsubsection{CRPsの取得による攻撃}
+取得したCRPsを機械学習を用いて学習することで，PUFの近似となる関数を取得する攻撃である．
+\ref{sidechannel}，\ref{reattack}節で紹介する攻撃手法と違い，電磁波を測定する装置や対象の機器に接触する必要がないため，
+解析難易度は比較的低いと考えられている\cite{nozaki}．
+したがって，モデリング攻撃の中ではこの攻撃手法が主流であると考えられる．
+
+調査したところ，この攻撃手法の対象となるPUFはArbiter PUF\cite{crps apuf1,crps apuf2,crps apuf3 multi1,crps apuf4 side,crps apuf5 multi2,crps apuf6,crps modeling,crps apuf7 crc}
+とRO PUF\cite{nozaki,crps modeling,crps RO}
+をベースにしたPUFに多く確認した．
+これは，これらのPUFは一般的な使い方ではStrong PUFに分類され，CRPsの空間が広くUncontrolled PUFとして使用されるため
+機械学習を行いやすいためであると考えられる．
+また，機械学習アルゴリズムの発展により，少ないCRPsでモデリング攻撃を行う研究もなされている\cite{nozaki}．
+対策としては，Strong PUFに機械学習によるクローン生成が難しいWeak PUFを組み合わせたマルチPUF\cite{crps apuf3 multi1,crps apuf5 multi2}や改良されたPUF\cite{crps apuf7 crc}を構築することで
+CRPsの規則性をなくすアプローチがとられている．
+
+\subsubsection{サイドチャネル情報による攻撃}
+\label{sidechannel}
+
+\subsubsection{リバース・エンジニアリングによる攻撃}
+\label{reattack}
+
+
+
 \section{まとめ}
 
 %\ack %% 謝辞
@@ -313,6 +350,50 @@ Arbiter,RO
   "Extended abstract: The butterfly PUF protecting IP on every FPGA,"
   2008 IEEE International Workshop on Hardware-Oriented Security and Trust, pp.67-70,
   June 2008.（DOI: 10.1109/HST.2008.4559053）
+
+  \bibitem{nozaki}
+  野崎佑典, 梅田大知, 竹本修, 吉川雅弥,
+  “リングオシレータPUFに対する遺伝的アルゴリズムを用いたハイブリッドモデリング解析とその評価,”
+  電気学会論文誌Ｃ（電子・情報・システム部門誌）, 140 巻, 12 号, p. 1307-1315, Dec. 2020.
+  （DOI: 10.1541/ieejeiss.140.130）
+  %crps modeling attack
+  \bibitem{crps modeling}
+  U. Rührmair et al., "PUF Modeling Attacks on Simulated and Silicon Data,"
+  in IEEE Transactions on Information Forensics and Security, vol. 8, no. 11, pp. 1876-1891, Nov. 2013.
+  doi: 10.1109/TIFS.2013.2279798.
+  \bibitem{crps apuf1}
+  J. Ye, Y. Hu and X. Li, “RPUF: Physical Unclonable Function with Randomized Challenge to resist modeling attack,”
+  2016 IEEE Asian Hardware-Oriented Security and Trust (AsianHOST), pp. 1-6, Dec. 2016.
+  （Doi: 10.1109/AsianHOST.2016.7835567）
+  \bibitem{crps apuf2}
+  C. Gu, C. H. Chang, W. Liu, S. Yu, Q. Ma and M. O'neill,
+  “A Modeling Attack Resistant Deception Technique for Securing PUF based Authentication,”
+  2019 Asian Hardware Oriented Security and Trust Symposium (AsianHOST), pp. 1-6, Dec. 2019.
+  （Doi: 10.1109/AsianHOST47458.2019.9006710）
+  \bibitem{crps apuf3 multi1}
+  Q. Ma, C. Gu, N. Hanley, C. Wang, W. Liu and M. O'Neill, “A machine learning attack resistant multi-PUF design on FPGA,”
+  2018 23rd Asia and South Pacific Design Automation Conference (ASP-DAC), pp. 97-104, Jan. 2018.
+  （doi: 10.1109/ASPDAC.2018.8297289）
+  \bibitem{crps apuf4 side}
+  T. Kroeger, W. Cheng, S. Guilley, J. -L. Danger and N. Karimi,
+  "Effect of Aging on PUF Modeling Attacks based on Power Side-Channel Observations,"
+  2020 Design, Automation \& Test in Europe Conference \& Exhibition (DATE), pp. 454-459, March 2020.
+  doi: 10.23919/DATE48585.2020.9116428.
+  \bibitem{crps apuf5 multi2}
+  Y. Cui, C. Gu, Q. Ma, Y. Fang, C. Wang, M. O’Neill, and W. Liu, “Lightweight Modeling Attack-Resistant Multiplexer-Based Multi-PUF (MMPUF) Design on FPGA,”
+  Electronics, vol. 9, no. 5, p. 815, May 2020.
+  \bibitem{crps apuf6}
+  M. Ebrahimabadi, M. Younis, W. Lalouani and N. Karimi, "A Novel Modeling-Attack Resilient Arbiter-PUF Design,"
+  2021 34th International Conference on VLSI Design and 2021 20th International Conference on Embedded Systems (VLSID), pp. 123-128, Feb. 2021.
+  doi: 10.1109/VLSID51830.2021.00026.
+  \bibitem{crps apuf7 crc}
+  E. Dubrova, O. Näslund, B. Degen, A. Gawell and Y. Yu, "CRC-PUF: A Machine Learning Attack Resistant Lightweight PUF Construction,"
+  2019 IEEE European Symposium on Security and Privacy Workshops (EuroS\&PW), pp. 264-271, June 2019.
+  doi: 10.1109/EuroSPW.2019.00036.
+  \bibitem{crps RO}
+  Q. Wang, M. Gao, and G. Qu, “A Machine Learning Attack Resistant Dual-mode PUF,”
+  In Proceedings of the 2018 on Great Lakes Symposium on VLSI (GLSVLSI '18),
+  Association for Computing Machinery, pp.177–182, May 2018.
 \end{thebibliography}
 
 %\appendix
