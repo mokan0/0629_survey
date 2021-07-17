@@ -240,11 +240,16 @@ Uncontrolled PUFはシンプルな利用法であり，アクセス制御のた�
 
 Controlled PUFはPUFの生データを秘匿するため，攻撃者にCRPsを知られることを防ぎモデリング解析の対策になると考えられている．
 そのため，SRAM PUFなどのWeak PUFはControlled PUFとして実装されることが望ましい．
-\section{PUFの利用法}
+\section{PUFの活用法}
 \label{puf use}
 \subsection{真贋判定・個体識別}
 \subsection{鍵の生成}
 \subsection{チャレンジ・レスポンス認証}
+認証とは，通信において相手が本人か否かを確認する技術である．
+暗号を用いた認証では，認証する側と認証される側が，あらかじめ交換しておいて秘密鍵をもっているかどうか確かめることで行う．
+このとき秘密鍵を露出することなく認証を行う手段にチャレンジ・レスポンス認証がある．
+
+この認証方式では共通鍵暗号アルゴリズムを用いるが，これはPUFで代用する方式が提案されている．
 \section{PUFに対する攻撃}
 \subsection{モデリング攻撃}
 モデリング攻撃とは，PUFからCRPsやサイドチャネルなどの情報を取得して，それを用いてPUFのクローンとなる関数を生成する攻撃である．
@@ -257,6 +262,7 @@ Controlled PUFはPUFの生データを秘匿するため，攻撃者にCRPsを�
 モデリング攻撃はPUFに対する攻撃として最も主流であり，現在に至るまで多くの結果が報告されている．
 今回，モデリング攻撃をするにあたってどのPUF情報を利用したかによって，モデリング攻撃の分類を行う．
 \subsubsection{CRPsの取得による攻撃}
+\label{Crps}
 取得したCRPsを機械学習を用いて学習することで，PUFの近似となる関数を取得する攻撃である．
 \ref{sidechannel}，\ref{reattack}節で紹介する攻撃手法と違い，電磁波を測定する装置や対象の機器に接触する必要がないため，
 解析難易度は比較的低いと考えられている\cite{nozaki}．
@@ -273,10 +279,15 @@ CRPsの規則性をなくすアプローチがとられている．
 
 \subsubsection{サイドチャネル情報による攻撃}
 \label{sidechannel}
+攻撃者は消費電力や漏洩する電磁波を観測することでPUF内部の情報を取得し，それを基にモデリング攻撃を行うことも可能である．
 
+Controlled Arbiter PUFは\ref{Crps}節のようなCRPsの機械学習による攻撃には耐性があると考えられているが，
+消費電力を測定することで得た情報を元に機械学習することでモデリング攻撃が可能であると指摘されている\cite{side apuf}．
+また，RO PUFの漏洩電磁波を用いた手法\cite{side rpuf1,side rpuf2,side rpuf3}もいくつか提案されている．
 \subsubsection{リバース・エンジニアリングによる攻撃}
 \label{reattack}
-
+PUFは電源投入後にしか鍵が顕在しないため，電源オフ時に行う静的リバース・エンジニアリングに耐性がある．
+しかし，
 
 
 \section{まとめ}
@@ -394,6 +405,19 @@ CRPsの規則性をなくすアプローチがとられている．
   Q. Wang, M. Gao, and G. Qu, “A Machine Learning Attack Resistant Dual-mode PUF,”
   In Proceedings of the 2018 on Great Lakes Symposium on VLSI (GLSVLSI '18),
   Association for Computing Machinery, pp.177–182, May 2018.
+  \bibitem{side apuf}
+  G.T. Becker, R. Kumar,“Active and Passive Side-Channel Attacks on Delay Based PUF Designs,”
+  IACR Cryptology ePrint Archive, vol. 2014, pp.287, 2014.
+  \bibitem{side rpuf1}
+  Y. Cao, X. Zhao, W. Ye, Q. Han, and X. Pan, “A Compact and Low Power RO PUF with High Resilience to the EM Side-Channel Attack and the SVM Modelling Attack of Wireless Sensor Networks,”
+  Sensors, vol. 18, no. 2, p. 322, Jan. 2018.
+  \bibitem{side rpuf2}
+  M. Shiozaki, T. Fujino,
+  “Simple electromagnetic analysis attack based on geometric leak on ASIC implementation of ring-oscillator PUF,”
+  J Cryptogr Eng, Sep. 2020.
+  \bibitem{side rpuf3}
+  D. Merli, D. Schuster, F. Stumpf, G. Sigl,“Semi-invasive EM attack on FPGA RO PUFs and countermeasures,”
+  Association for Computing Machinery, New York, NY, USA, 2011.
 \end{thebibliography}
 
 %\appendix
