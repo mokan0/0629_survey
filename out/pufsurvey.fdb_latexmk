@@ -1,10 +1,12 @@
 # Fdb version 3
-["dvipdf"] 1626424760 "out/pufsurvey.dvi" "out/pufsurvey.pdf" "out/pufsurvey" 1626424762
-  "out/pufsurvey.dvi" 1626424760 26888 cbc78aea625ff0b9e9f962bb416f0eac "latex"
+["dvipdf"] 1626627228 "out/pufsurvey.dvi" "out/pufsurvey.pdf" "out/pufsurvey" 1626627229
+  "out/pufsurvey.dvi" 1626627227 48444 9f399cc3c3093dda6f9aea291508e5a4 "latex"
   (generated)
   "out/pufsurvey.pdf"
-["latex"] 1626424759 "c:/Users/luteo/Documents/Iselab/2021/0629_survey/pufsurvey.tex" "out/pufsurvey.dvi" "pufsurvey" 1626424762
-  "c:/Users/luteo/Documents/Iselab/2021/0629_survey/pufsurvey.tex" 1626424758 19666 bfea9b94192882a8e8d8d32abdb80cf7 ""
+["latex"] 1626627225 "c:/Users/luteo/Documents/Iselab/2021/0629_survey/pufsurvey.tex" "out/pufsurvey.dvi" "pufsurvey" 1626627229
+  "Apuf.png" 1626603476 42251 3627aaf493fdb0af955fdc8626534a5a ""
+  "ROpuf.png" 1626600888 29381 a8b47a75164a8b05569687aacf75ad45 ""
+  "c:/Users/luteo/Documents/Iselab/2021/0629_survey/pufsurvey.tex" 1626627220 35773 5f5b8b8c66465e5f91364ffc119c8fd2 ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1622615591 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/ptex-fonts/jis/jis.tfm" 1622617496 468 53f854284f6afa6c36aaa2d1090ecc12 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/ptex-fonts/jis/jisg.tfm" 1622617496 468 53f854284f6afa6c36aaa2d1090ecc12 ""
@@ -54,6 +56,12 @@
   "c:/texlive/2021/texmf-dist/tex/latex/carlisle/scalefnt.sty" 1622614633 1360 df2086bf924b14b72d6121fe9502fcdb ""
   "c:/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1622615403 46845 3b58f70c6e861a13d927bff09d35ecbc ""
   "c:/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty" 1622615586 14310 41fdb35c51be792ddf00696848d0cfef ""
+  "c:/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1622615777 1224 978390e9c2234eab29404bc21b268d1e ""
+  "c:/texlive/2021/texmf-dist/tex/latex/graphics-def/dvipdfmx.def" 1622615778 12854 d1d8e11aeb3b6a981367508e762ca48a ""
+  "c:/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty" 1622615775 18399 7e40f80366dffb22c0e7b70517db5cb4 ""
+  "c:/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty" 1622615775 7972 81ea1752666dc7c1e93f0b4c10665ca1 ""
+  "c:/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty" 1622615775 2671 4de6781a30211fe0ea4c672e4a2a8166 ""
+  "c:/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty" 1622615775 4007 3bccccf8f35e1bc1ef0f7c55ceeb7713 ""
   "c:/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-dvips.def" 1622616190 33885 7b5f004dfd460a650c96d433640fd2fa ""
   "c:/texlive/2021/texmf-dist/tex/latex/mweights/mweights.sty" 1622616832 4953 67f29a12ea26221103fce6bae3433e60 ""
   "c:/texlive/2021/texmf-dist/tex/latex/newtx/lmsntxsy.fd" 1622616890 826 416b85b785f5c45134306644b3ccaa8a ""
@@ -73,9 +81,9 @@
   "c:/texlive/2021/texmf-var/web2c/eptex/platex.fmt" 1622618953 2762821 bdc3b739e54c11edff4e7b5bfdf952e6 ""
   "c:/texlive/2021/texmf.cnf" 1622618811 713 e69b156964470283e0530f5060668171 ""
   "ieicej.cls" 1623825452 116905 4e13fbb3f996084402c3f51357c1b815 ""
-  "out/pufsurvey.aux" 1626424760 653 041a31f5afd171b8ea2beec35fa04f19 "latex"
-  "pufsurvey.tex" 1626424758 19666 bfea9b94192882a8e8d8d32abdb80cf7 ""
+  "out/pufsurvey.aux" 1626627227 1912 e2c9a5cc362bbb0e787522f87391dbc7 "latex"
+  "pufsurvey.tex" 1626627220 35773 5f5b8b8c66465e5f91364ffc119c8fd2 ""
   (generated)
-  "out/pufsurvey.dvi"
   "out/pufsurvey.aux"
+  "out/pufsurvey.dvi"
   "out/pufsurvey.log"

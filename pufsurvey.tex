@@ -8,6 +8,7 @@
 \usepackage{newtxtext}% 英数字フォントの設定を変更しないでください
 \usepackage[varg]{newtxmath}% % 英数字フォントの設定を変更しないでください
 \usepackage{latexsym}
+\usepackage[dvipdfmx]{graphicx}
 %\usepackage{amssymb}
 
 \setcounter{page}{1}
@@ -37,23 +38,45 @@
 \end{abstract}
 \begin{keyword}
   %和文キーワード 4〜5語
-  暗号ハードウェア，ハードウェアセキュリテイ，PUF
+  PUF，真贋判定，認証，モデリング攻撃
 \end{keyword}
 \begin{eabstract}
   %英文アブストラクト 100 words
 \end{eabstract}
 \begin{ekeyword}
   %英文キーワード
-  Physically Unclonable Function
+  Physically Unclonable Function，Identification，Authentification，Modeling attack
 \end{ekeyword}
 \maketitle
 
 \section{はじめに}
-研究背景，PUFの使いみち
+Internet of Things（IoT）の普及に伴い，現在，膨大な数のIoT機器がデータを収集し通信を行っている．
+IoT機器の発展がもたらすSociety 5.0の実現は人々に便利さをもたらす一方，セキュリティリスクの増大が深刻な問題となっている．
+この問題の一因として，製造品の偽造が挙げられる．
+特に半導体産業は新型コロナウイルス流行の影響で工場が一部閉鎖されるなど打撃を受けたため，半導体不足により多くの偽造ICチップが出回っている\cite{ICfake}．
+偽造ICチップは正規品よりも早く故障する可能性が高く，搭載されている機器の寿命を短くする恐れがある．
+それだけでなく偽造品は誤作動を引き起こす可能性があるため，万が一重要なインフラで使用するIoT機器に偽造ICチップが使用されていた場合，
+システム障害や情報漏えいといったセキュリティインシデントを引き起こす可能性がある．
+したがってセキュリティ上の観点から，偽造ICチップの流通を防止する必要がある．
+
+ICチップが正規品か偽造品か見分ける方法として，Physically Unclonable Function（PUF）を用いることが可能である．
+PUFとは，大量生産された製造物（多くの場合，半導体技術を用いて作られたチップ）の製造時に生じる製造ばらつきを利用して，ランダムに各個体に付与された個性，またそれを利用した技術のことを指す．
+この個性は製造者がプログラムやシリアル番号などを書き込むことなく，自動的に付与されるものであり同時に制御不能なものである．
+したがって，その個性をもった個体のクローンを作成することを防ぎ，人間を指紋や虹彩で識別するように製造物の個体識別が可能となる．
+
+従来，シリアル番号が製造物の個体識別や品質管理に用いられていたが，シリアル番号とPUFの最も異なる点はクローンの製造が可能か否かである．
+シリアル番号はただの文字列であるため，悪意のある攻撃者に一度認識されれば偽造品の製造を避けることは難しい．
+しかし，PUFは製造時の制御不能なばらつきを利用してIDを作成するため，同じPUFの製造物を偽造することは対象の製品の微小な個体差までを
+完璧に再現することに等しく，非常に困難である．
+
+また，PUFは製造品の個体識別だけでなく，認証や秘密鍵の管理に使うことができると考えられている．
+秘密鍵の管理は従来であれば不揮発性メモリで行っていたが，不揮発性メモリはチップを開封して解析を行う静的リバース・エンジニアリングに耐性がない．
+しかしPUFを用いた鍵管理は，動作時にしか鍵が顕在しないためそのような攻撃に耐性がある．
+
 
 \section{Physically Unclonable Function}
-\subsection{PUFの概要}
-Physicallly Unclonable Function（PUF）とは，半導体技術を用いて作った集積回路などの大量生産された製造物に対し，
+\subsection{PUFの定義}
+PUFとは，半導体技術を用いて作った集積回路などの大量生産された製造物に対し，
 製造時に生じる制御不能な製造ばらつきを利用して，その個体に固有なランダム関数を作成し使用する技術のことを指す．
 この技術は偽造品か否かどうかの真贋判定・個体識別や，主体認証，また暗号鍵やパラメータの生成に利用することが可能であると考えられている．
 
@@ -92,11 +115,21 @@ PUFの個体差，つまりユニーク性は高いほうがよい．
 
 この特性には2つの意味があり，1つは正規製造者であってもクローンを作ることができないこと（＝製造者耐性），
 もう1つはクローンの制作を試みる攻撃への耐性を持つ（クローンを作るための既知の攻撃が存在しない）ことである．
+\subsection{PUFの活用法}
+\label{puf use}
+\subsubsection{真贋判定・個体識別}
+\subsubsection{鍵の生成}
+\subsubsection{チャレンジ・レスポンス認証}
+認証とは，通信において相手が本人か否かを確認する技術である．
+暗号を用いた認証では，認証する側と認証される側が，あらかじめ交換しておいて秘密鍵をもっているかどうか確かめることで行う．
+このとき秘密鍵を露出することなく認証を行う手段にチャレンジ・レスポンス認証がある．
 
+この認証方式では共通鍵暗号アルゴリズムを用いるが，これはPUFで代用する方式が提案されている．
 
 \section{様々なPUF}
 \subsection{PUFの歴史と構築法}
 \subsubsection{初期のPUF}
+\label{firstpuf}
 \paragraph{Physical one-way functions}
 PUFの始祖とされているのは，2001年にPappuが提案した物理的一方向性関数（Physical one-way functions: POWF）\cite{pappu}である．
 背景としては，既存の数論に基づいた一方向性関数の課題に対する解決策として提案された．
@@ -107,10 +140,10 @@ POWFの簡略化した手順を以下に示す．
   \item スペックルパターンをガボール変換でフィルタリングし，鍵となるビット列（1次元）を生成する．
 \end{enumerate}
 
-\paragraph{Sillicon PUF}
-\label{SilliconPUF}
+\paragraph{Silicon PUF}
+\label{SiliconPUF}
 POWFは精密な光学機器で処理を行う必要があるため，アナログインターフェイスで使用するように作られている．
-一方でGassendは2002年に，計算機やメモリと混載できるようにデジタルインターフェイスで動作する，半導体製のPUF（Sillicon PUF）を提案した\cite{gassend1}．
+一方でGassendは2002年に，計算機やメモリと混載できるようにデジタルインターフェイスで動作する，半導体製のPUF（Silicon PUF）を提案した\cite{gassend1}．
 Sillicon PUFは前述のPOWFと異なり，暗号実装のハードウェア構成要素としてすぐに導入することができるため，
 現在研究されているPUF構築の主要な種類となっている．
 
@@ -125,7 +158,7 @@ Gassendが提案したPUF\cite{gassend1}の構成は，\ref{ROPUF}節のRing Oci
 \label{delaypuf}
 \paragraph{Arbiter PUF}
 \label{apuf}
-\ref{SilliconPUF}節のGassendが提案したPUFは，回路の遅延が温度や電源電圧などの環境変化に敏感であるため，
+\ref{firstpuf}節\ref{SiliconPUF}のGassendが提案したPUFは，回路の遅延が温度や電源電圧などの環境変化に敏感であるため，
 PUFの信頼性を高めるためにはノイズが重大な問題となる，とLeeは指摘を行った\cite{lee}．
 そこでLimらは2004年にSillicon PUFの再現性を改善させたArbiter PUF\cite{lim}を実装した．
 Arbiter PUFは差動構造（Arbiter）に基づいており，環境に起因するノイズに対するPUFの再現性を向上させることが可能である．
@@ -133,6 +166,13 @@ Arbiter PUFは差動構造（Arbiter）に基づいており，環境に起因�
 Arbiterを用いてデジタル情報を生成するためである．
 
 %ここでアービターPUFの図を入れたい\label{APUF}
+\begin{figure}[tb]
+  \begin{center}
+    \includegraphics[width=75mm]{Apuf.png}
+  \end{center}
+  \caption{Arbiter PUFの構築法}
+  \label{APUF}
+\end{figure}
 %前半，後半で分ける余裕があるかはわからん
 Arbiter PUFの構造は前半と後半に分けられる．
 最初に2つの入力から立ち上がり信号（＝チャレンジ）が同時に入力され，
@@ -173,13 +213,20 @@ Arbiter PUFの構造は前半と後半に分けられる．
 \label{ROPUF}
 2007年にSuhによって提案されたRing Oscillator PUF（RO PUF）\cite{suh}は，ROの発振周波数が製造ばらつきによって異なることを基にしたPUFである．
 ROは奇数個のインバータから構成されている．
-奇数個のインバータをループ上に並べ，その中のある一点の値を出力に利用することでROの出力は一定の周期で0と1を繰り返す．
+\begin{figure}[tb]
+  \begin{center}
+    \includegraphics[width=75mm]{ROpuf.png}
+  \end{center}
+  \caption{RO PUFの構築法}
+  \label{ROPUF-fig}
+\end{figure}
+奇数個のインバータをループ上に並べ（図\ref{ROPUF-fig}（b）），その中のある一点の値を出力に利用することでROの出力は一定の周期で0と1を繰り返す．
 インバータの個数や配線方法などがまったく同じROであっても，回路内部の部品の製造ばらつきによって微妙に発振周波数が異なり，
 RO PUFではこの発振周波数の違いを用いてPUFの機能を提供する．
 RO PUFでは3個以上のROが用いられており，その中からチャレンジの値によって2つのROを選出する．
 そしてその2つのROの周波数の比較によってレスポンスとなる0か1のビットを出力する．
 
-図\ref{ROPUF-fig}のように複数（この場合は$N$個）のROはMUXに接続され，チャレンジはそのMUXのセレクタとして用いられる．
+図\ref{ROPUF-fig}（a）のように複数（この場合は$N$個）のROはMUXに接続され，チャレンジはそのMUXのセレクタとして用いられる．
 セレクタにより選ばれた2つの信号はそれぞれ別のカウンター回路に入力しており，カウンター回路で計測された一定時間あたりの
 発振回数が比較されその結果によってRO PUFから0か1の値が出力される．
 \subsubsection{メモリベースのPUF}
@@ -240,20 +287,12 @@ Uncontrolled PUFはシンプルな利用法であり，アクセス制御のた�
 
 Controlled PUFはPUFの生データを秘匿するため，攻撃者にCRPsを知られることを防ぎモデリング解析の対策になると考えられている．
 そのため，SRAM PUFなどのWeak PUFはControlled PUFとして実装されることが望ましい．
-\section{PUFの活用法}
-\label{puf use}
-\subsection{真贋判定・個体識別}
-\subsection{鍵の生成}
-\subsection{チャレンジ・レスポンス認証}
-認証とは，通信において相手が本人か否かを確認する技術である．
-暗号を用いた認証では，認証する側と認証される側が，あらかじめ交換しておいて秘密鍵をもっているかどうか確かめることで行う．
-このとき秘密鍵を露出することなく認証を行う手段にチャレンジ・レスポンス認証がある．
 
-この認証方式では共通鍵暗号アルゴリズムを用いるが，これはPUFで代用する方式が提案されている．
-\section{PUFに対する攻撃}
-\subsection{モデリング攻撃}
+\section{PUFの問題}
+\subsection{PUFへの攻撃}
+\subsubsection{モデリング攻撃}
 モデリング攻撃とは，PUFからCRPsやサイドチャネルなどの情報を取得して，それを用いてPUFのクローンとなる関数を生成する攻撃である．
-\ref{puf use}章で紹介したようにPUFをセキュリティの要素として使うためには，あるチャレンジに対応するレスポンスが推定されないことが重要である．
+\ref{puf use}節で紹介したようにPUFをセキュリティの要素として使うためには，あるチャレンジに対応するレスポンスが推定されないことが重要である．
 
 \ref{delaypuf}節\ref{apuf}のArbiter PUFは導入当初から，モデリング攻撃を受けやすいことが認識されていた\cite{maes1}\cite{lim}．
 これは，PUFの再現性を高めるためにArbiter PUFのチャレンジとレスポンスの間の依存関係の複雑さが軽減されたためである．
@@ -261,7 +300,7 @@ Controlled PUFはPUFの生データを秘匿するため，攻撃者にCRPsを�
 
 モデリング攻撃はPUFに対する攻撃として最も主流であり，現在に至るまで多くの結果が報告されている．
 今回，モデリング攻撃をするにあたってどのPUF情報を利用したかによって，モデリング攻撃の分類を行う．
-\subsubsection{CRPsの取得による攻撃}
+\paragraph{CRPsの取得による攻撃}
 \label{Crps}
 取得したCRPsを機械学習を用いて学習することで，PUFの近似となる関数を取得する攻撃である．
 \ref{sidechannel}，\ref{reattack}節で紹介する攻撃手法と違い，電磁波を測定する装置や対象の機器に接触する必要がないため，
@@ -277,11 +316,11 @@ Controlled PUFはPUFの生データを秘匿するため，攻撃者にCRPsを�
 対策としては，Strong PUFに機械学習によるクローン生成が難しいWeak PUFを組み合わせたマルチPUF\cite{crps apuf3 multi1,crps apuf5 multi2}や改良されたPUF\cite{crps apuf7 crc}を構築することで
 CRPsの規則性をなくすアプローチがとられている．
 
-\subsubsection{サイドチャネル情報による攻撃}
+\paragraph{サイドチャネル情報による攻撃}
 \label{sidechannel}
 攻撃者は消費電力や漏洩する電磁波を観測することでPUF内部の情報を取得し，それを基にモデリング攻撃を行うことも可能である．
 
-Controlled Arbiter PUFは\ref{Crps}節のようなCRPsの機械学習による攻撃には耐性があると考えられているが，
+Controlled Arbiter PUFは\ref{Crps}のようなCRPsの機械学習による攻撃には耐性があると考えられているが，
 消費電力を測定することで得た情報を元に機械学習することでモデリング攻撃が可能であると指摘されている\cite{side apuf}．
 また，RO PUFの漏洩電磁波を用いた手法\cite{side rpuf1,side rpuf2,side rpuf3}もいくつか提案されている．
 \subsubsection{リバース・エンジニアリングによる攻撃}
@@ -297,6 +336,10 @@ PUFは電源投入後にしか鍵が顕在しないため，電源オフ時に�
 %\bibliographystyle{sieicej}
 %\bibliography{myrefs}
 \begin{thebibliography}{99}% 文献数が10未満の時 {9}
+  \bibitem{ICfake}
+  Gigazine,“世界的な半導体不足によって偽造チップが広がっている,”
+  https://gigazine.net/news/20210615-chip-shortages-lead-counterfeit/,
+  参照 July 18, 2021.
   \bibitem{sugatake}
   菅原健，“暗号ハードウェアの研究開発動向：フィジカリー・アンクローナブル・ファンクション，”
   金融研究，vol.39，no.4，pp.25-54，Oct. 2020.
